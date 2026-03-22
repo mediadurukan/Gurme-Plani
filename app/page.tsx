@@ -1,11 +1,18 @@
+"use client";
+
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import QuoteSlider from "./components/QuoteSlider";
 import FeaturesSection from "./components/FeaturesSection";
+import PlanModal from "./components/PlanModal";
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <main className="min-h-screen w-full flex flex-col items-center" style={{ background: "#0a0a0a" }}>
+      <PlanModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       <Navbar />
       <HeroSection />
 
@@ -53,6 +60,7 @@ export default function Home() {
             Ücretsiz kaydolun, haftanızı planlayın, lezzetin tadını çıkarın.
           </p>
           <button
+            onClick={() => setModalOpen(true)}
             className="bg-orange-500 hover:bg-orange-600 text-white text-xl font-semibold px-14 py-5 rounded-full transition-all duration-300"
             style={{ boxShadow: "0 0 40px rgba(249,115,22,0.4)" }}
           >

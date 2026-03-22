@@ -1,11 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import PlanModal from "./PlanModal";
+
 
 const floatingItems = ["🥗", "🍝", "🥘", "🍜", "🥩", "🧁"];
 
 export default function HeroSection() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
+    <>
+    <PlanModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20">
       {/* Background gradient */}
       <div
@@ -91,9 +98,10 @@ export default function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(249,115,22,0.5)" }}
             whileTap={{ scale: 0.97 }}
+            onClick={() => setModalOpen(true)}
             className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-4 rounded-full transition-colors duration-300"
           >
-            Ücretsiz Başla 🚀
+            Planlamaya Başla 🚀
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -130,5 +138,6 @@ export default function HeroSection() {
         style={{ background: "linear-gradient(to top, #0a0a0a, transparent)" }}
       />
     </section>
+    </>
   );
 }
