@@ -48,7 +48,7 @@ export default function QuoteSlider() {
 
   return (
     <div className="relative w-full max-w-3xl mx-auto py-16 px-6">
-      <div className="relative h-48 flex items-center justify-center">
+      <div className="relative min-h-56 flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}

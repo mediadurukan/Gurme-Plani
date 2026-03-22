@@ -5,13 +5,13 @@ import FeaturesSection from "./components/FeaturesSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen" style={{ background: "#0a0a0a" }}>
+    <main className="min-h-screen w-full flex flex-col items-center" style={{ background: "#0a0a0a" }}>
       <Navbar />
       <HeroSection />
 
       {/* Quote Slider Section */}
       <section
-        className="py-8 relative"
+        className="py-8 relative w-full"
         style={{
           background:
             "linear-gradient(to bottom, #0a0a0a, rgba(249,115,22,0.05), #0a0a0a)",
@@ -28,7 +28,7 @@ export default function Home() {
       <FeaturesSection />
 
       {/* CTA Section */}
-      <section className="py-24 px-6 text-center relative overflow-hidden">
+      <section className="py-24 px-6 text-center relative overflow-hidden w-full">
         <div
           className="absolute inset-0"
           style={{
@@ -63,7 +63,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer
-        className="border-t py-8 text-center text-gray-600 text-sm"
+        className="border-t py-8 text-center text-gray-600 text-sm w-full"
         style={{ borderColor: "rgba(249,115,22,0.1)" }}
       >
         © 2026 Gurme Planı · Tüm hakları saklıdır 🍊

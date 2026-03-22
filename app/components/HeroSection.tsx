@@ -6,7 +6,7 @@ const floatingItems = ["🥗", "🍝", "🥘", "🍜", "🥩", "🧁"];
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20">
       {/* Background gradient */}
       <div
         className="absolute inset-0 z-0"
