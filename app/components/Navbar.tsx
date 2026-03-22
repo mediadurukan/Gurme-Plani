@@ -7,25 +7,45 @@ export default function Navbar() {
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5"
-      style={{ background: "rgba(10,10,10,0.85)", backdropFilter: "blur(12px)" }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4"
+      style={{
+        background: "rgba(10,10,10,0.8)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(249,115,22,0.1)",
+      }}
     >
       <div className="flex items-center gap-2">
         <span className="text-2xl">🍊</span>
         <span className="text-white font-bold text-xl tracking-wide">
-          Gurme <span className="text-orange-500">Planı</span>
+          Gurme <span className="shimmer-text">Planı</span>
         </span>
       </div>
-      <div className="hidden md:flex items-center gap-8 text-gray-400 text-sm">
-        <a href="#" className="hover:text-orange-400 transition-colors">Ana Sayfa</a>
-        <a href="#" className="hover:text-orange-400 transition-colors">Tarifler</a>
-        <a href="#" className="hover:text-orange-400 transition-colors">Haftalık Plan</a>
-        <a href="#" className="hover:text-orange-400 transition-colors">Hakkımızda</a>
+
+      <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+        {["Ana Sayfa", "Tarifler", "Haftalık Plan", "Hakkımızda"].map((item) => (
+          <a
+            key={item}
+            href="#"
+            className="text-gray-400 hover:text-orange-400 transition-colors duration-200 relative group"
+          >
+            {item}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full" />
+          </a>
+        ))}
       </div>
-      <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/30">
+
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="text-white text-sm font-bold px-6 py-2.5 rounded-full relative overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #f97316, #ea580c)",
+          boxShadow: "0 4px 20px rgba(249,115,22,0.4)",
+        }}
+      >
         Başla
-      </button>
+      </motion.button>
     </motion.nav>
   );
 }
