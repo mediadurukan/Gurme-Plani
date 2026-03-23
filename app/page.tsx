@@ -11,7 +11,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden" style={{ background: "#ffffff" }}>
+    <main className="min-h-screen w-full" style={{ background: "#ffffff" }}>
       <PlanModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       <Navbar />
       <HeroSection />
