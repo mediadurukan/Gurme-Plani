@@ -1,12 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-)
-
 export async function GET(req: NextRequest) {
+  const supabase = createClient(
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_KEY!
+  )
   const region     = req.nextUrl.searchParams.get('region')
   const search     = req.nextUrl.searchParams.get('search')
   const difficulty = req.nextUrl.searchParams.get('difficulty')
