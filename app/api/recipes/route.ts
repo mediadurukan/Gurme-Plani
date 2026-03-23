@@ -22,6 +22,6 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await query.limit(200)
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json({ recipes: data })
+  if (error) return NextResponse.json({ error: error.message, debug: { region, search } }, { status: 500 })
+  return NextResponse.json({ recipes: data, debug: { count: data?.length, region } })
 }
