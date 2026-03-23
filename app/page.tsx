@@ -18,7 +18,7 @@ export default function Home() {
 
       {/* Quote Slider Section */}
       <section
-        className="py-20 relative w-full"
+        className="py-20 relative w-full flex flex-col items-center"
         style={{
           background:
             "linear-gradient(to bottom, #ffffff, rgba(249,115,22,0.05), #ffffff)",
@@ -35,7 +35,7 @@ export default function Home() {
       <FeaturesSection />
 
       {/* CTA Section */}
-      <section className="py-24 px-6 text-center relative overflow-hidden w-full">
+      <section className="py-24 px-6 text-center relative overflow-hidden w-full flex flex-col items-center">
         <div
           className="absolute inset-0"
           style={{

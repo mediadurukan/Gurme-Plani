@@ -13,7 +13,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-24 relative w-full px-4 sm:px-8">
+    <section className="py-24 relative w-full px-4 sm:px-8 flex flex-col items-center">
       <div className="max-w-[1280px] mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
