@@ -16,9 +16,8 @@ export interface Recipe {
 
 export interface DayMeal {
   dayName: string
-  breakfast: Recipe[]
-  lunch: { mains: Recipe[]; side: Recipe | null }
-  dinner: { mains: Recipe[]; side: Recipe | null }
+  lunch: { mains: Recipe[]; side: Recipe | null; dessert: Recipe | null }
+  dinner: { mains: Recipe[]; side: Recipe | null; dessert: Recipe | null }
 }
 
 export interface MealPlan {

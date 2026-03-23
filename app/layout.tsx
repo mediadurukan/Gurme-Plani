@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -24,11 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      style={{ colorScheme: "light", backgroundColor: "#ffffff" }}
+      lang="tr"
+      className={`${playfair.variable} ${dmSans.variable} h-full antialiased`}
+      style={{ colorScheme: "light", backgroundColor: "#FDFAF6" }}
     >
-      <body className="min-h-full flex flex-col" style={{ backgroundColor: "#ffffff", color: "#111111" }}>{children}</body>
+      <body className="min-h-full flex flex-col" style={{ backgroundColor: "#FDFAF6", color: "#1C1612" }}>{children}</body>
     </html>
   );
 }

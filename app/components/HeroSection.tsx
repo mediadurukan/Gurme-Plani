@@ -3,137 +3,217 @@
 import { motion } from "framer-motion";
 
 const floatingItems = [
-  { emoji: "🥗", delay: 0, x: "8%", y: "20%" },
-  { emoji: "🍝", delay: 0.8, x: "85%", y: "15%" },
-  { emoji: "🥘", delay: 1.4, x: "15%", y: "70%" },
-  { emoji: "🍜", delay: 0.4, x: "78%", y: "65%" },
-  { emoji: "🥩", delay: 1.8, x: "50%", y: "10%" },
-  { emoji: "🧁", delay: 1.1, x: "90%", y: "40%" },
+  { emoji: "🥗", delay: 0,   x: "7%",  y: "22%" },
+  { emoji: "🍝", delay: 0.8, x: "84%", y: "16%" },
+  { emoji: "🥘", delay: 1.4, x: "14%", y: "68%" },
+  { emoji: "🍜", delay: 0.4, x: "77%", y: "64%" },
+  { emoji: "🥩", delay: 1.8, x: "50%", y: "9%"  },
+  { emoji: "🧁", delay: 1.1, x: "90%", y: "42%" },
 ];
 
 export default function HeroSection({ onStartClick }: { onStartClick: () => void }) {
   return (
-    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20">
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20"
+      style={{ background: "var(--bg)" }}
+    >
+      {/* Background orbs */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.12, 0.22, 0.12] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
           className="absolute rounded-full"
           style={{
-            width: 600, height: 600,
-            left: "50%", top: "30%",
+            width: 700, height: 700,
+            left: "50%", top: "35%",
             transform: "translate(-50%, -50%)",
-            background: "radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%)",
-            filter: "blur(40px)",
+            background: "radial-gradient(circle, rgba(200,83,15,0.28) 0%, transparent 65%)",
+            filter: "blur(60px)",
           }}
         />
         <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.16, 0.08] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
           className="absolute rounded-full"
           style={{
-            width: 400, height: 400,
-            left: "20%", top: "60%",
-            background: "radial-gradient(circle, rgba(251,191,36,0.2) 0%, transparent 70%)",
-            filter: "blur(40px)",
+            width: 500, height: 500,
+            left: "15%", top: "55%",
+            background: "radial-gradient(circle, rgba(200,146,42,0.22) 0%, transparent 65%)",
+            filter: "blur(50px)",
+          }}
+        />
+        {/* Subtle diagonal rule */}
+        <div
+          className="absolute"
+          style={{
+            top: "8%", right: "-5%",
+            width: 2, height: "40%",
+            background: "linear-gradient(to bottom, transparent, rgba(200,83,15,0.15), transparent)",
+            transform: "rotate(15deg)",
           }}
         />
       </div>
 
-      {/* Floating food emojis */}
+      {/* Floating emojis */}
       {floatingItems.map((item, i) => (
         <motion.div
           key={i}
-          className="absolute text-5xl select-none pointer-events-none"
-          style={{ left: item.x, top: item.y, opacity: 0.2 }}
-          animate={{ y: [0, -22, 0], rotate: [0, 8, -8, 0] }}
-          transition={{ duration: 5 + i * 0.6, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
+          className="absolute text-4xl select-none pointer-events-none"
+          style={{ left: item.x, top: item.y, opacity: 0.18 }}
+          animate={{ y: [0, -20, 0], rotate: [0, 6, -6, 0] }}
+          transition={{ duration: 5 + i * 0.7, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
         >
           {item.emoji}
         </motion.div>
       ))}
 
-      {/* Main content */}
+      {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6">
-          <span
-            className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2 rounded-full"
-            style={{ background: "rgba(249,115,22,0.12)", border: "1px solid rgba(249,115,22,0.4)", color: "#fb923c" }}
-          >
-            ✨ Mutfağınızı Planlayın, Hayatınızı Kolaylaştırın
-          </span>
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+          <span className="badge">✦ Mutfağınızı Planlayın, Hayatınızı Kolaylaştırın</span>
         </motion.div>
 
+        {/* Heading */}
         <motion.h1
-          initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="font-semibold mb-6 leading-tight tracking-tight"
-          style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.12 }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(3rem, 9vw, 6rem)",
+            fontWeight: 700,
+            lineHeight: 1.08,
+            letterSpacing: "-0.03em",
+            color: "var(--text-dark)",
+          }}
+          className="mb-6"
         >
-          <span className="text-gray-800">Gurme </span>
+          Gurme{" "}
           <span className="shimmer-text">Planı</span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+        {/* Decorative rule */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-light"
-          style={{ color: "#6b7280" }}
+          className="section-divider"
+        />
+
+        {/* Subheading */}
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed mt-6"
+          style={{ color: "var(--text-mid)", fontFamily: "var(--font-body)", fontWeight: 300 }}
         >
           Haftanızı lezzetli tariflerle planlayın, alışveriş listelerinizi otomatik oluşturun,
           mutfağınızı bir{" "}
-          <span className="text-orange-400 font-medium">gurme mutfağına</span> dönüştürün.
+          <span style={{ color: "var(--primary)", fontWeight: 500 }}>gurme mutfağına</span> dönüştürün.
         </motion.p>
 
+        {/* Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.button
-            whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
             onClick={onStartClick}
-            className="relative flex items-center justify-center text-white text-[17px] font-medium tracking-wide px-10 py-4 sm:py-5 rounded-full overflow-hidden w-full sm:w-auto"
-            style={{ background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)", boxShadow: "0 8px 24px rgba(249,115,22,0.25)" }}
+            className="btn-primary flex items-center justify-center text-white rounded-full overflow-hidden w-full sm:w-auto"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "1.0625rem",
+              fontWeight: 600,
+              letterSpacing: "0.01em",
+              padding: "16px 40px",
+            }}
           >
-            <span className="relative z-10">🚀 Planlamaya Başla</span>
+            Planlamaya Başla →
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center text-orange-500 text-[17px] font-medium tracking-wide px-10 py-4 sm:py-5 rounded-full transition-all duration-300 w-full sm:w-auto"
-            style={{ border: "1px solid rgba(249,115,22,0.3)", background: "rgba(249,115,22,0.03)" }}
+            whileHover={{ scale: 1.03, y: -1 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => document.getElementById("nasil-calisir")?.scrollIntoView({ behavior: "smooth" })}
+            className="flex items-center justify-center rounded-full transition-all duration-300 w-full sm:w-auto"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "1.0625rem",
+              fontWeight: 500,
+              color: "var(--primary)",
+              border: "1px solid var(--border-h)",
+              background: "rgba(200,83,15,0.03)",
+              padding: "16px 40px",
+            }}
           >
-            Nasıl Çalışır? →
+            Nasıl Çalışır?
           </motion.button>
         </motion.div>
 
+        {/* Stats */}
         <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 grid grid-cols-3 gap-6 max-w-2xl mx-auto w-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.85 }}
+          className="mt-20 grid grid-cols-3 gap-5 max-w-2xl mx-auto w-full"
         >
           {[
-            { value: "500+", label: "Tarif" },
+            { value: "500+",  label: "Tarif" },
             { value: "50K+", label: "Mutlu Kullanıcı" },
             { value: "7 Gün", label: "Plan Desteği" },
           ].map((stat, i) => (
-            <div
+            <motion.div
               key={i}
-              className="text-center p-5 md:p-6 rounded-[2rem]"
-              style={{ background: "rgba(249,115,22,0.03)", border: "1px solid rgba(249,115,22,0.08)" }}
+              whileHover={{ y: -3 }}
+              className="text-center p-5 md:p-6 rounded-2xl"
+              style={{
+                background: "rgba(255,255,255,0.7)",
+                border: "1px solid rgba(200,83,15,0.1)",
+                backdropFilter: "blur(8px)",
+                boxShadow: "0 2px 12px rgba(200,83,15,0.06)",
+              }}
             >
-              <div className="text-2xl font-semibold text-orange-400">{stat.value}</div>
-              <div className="text-gray-500 text-[13px] font-medium mt-1">{stat.label}</div>
-            </div>
+              <div
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "1.6rem",
+                  fontWeight: 700,
+                  color: "var(--primary)",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                {stat.value}
+              </div>
+              <div
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.8rem",
+                  fontWeight: 500,
+                  color: "var(--text-soft)",
+                  marginTop: 4,
+                }}
+              >
+                {stat.label}
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
 
+      {/* Fade bottom */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-40 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to top, #ffffff, transparent)" }}
+        className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none z-10"
+        style={{ background: "linear-gradient(to top, var(--bg), transparent)" }}
       />
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Recipe } from "../lib/types";
+import { estimateNutrition } from "../lib/nutrition";
 
 interface Props {
   recipe: Recipe | null;
@@ -70,6 +71,30 @@ export default function RecipeDetailModal({ recipe, onClose }: Props) {
                   ✕
                 </button>
               </div>
+
+              {/* Nutrition */}
+              {(() => {
+                const n = estimateNutrition(recipe)
+                return (
+                  <div className="px-6 py-4 border-b border-gray-100">
+                    <p className="text-xs text-gray-400 mb-2 font-medium uppercase tracking-wide">Tahmini Besin Değerleri (1 porsiyon)</p>
+                    <div className="grid grid-cols-4 gap-2">
+                      {[
+                        { label: "Kalori", value: n.calories, unit: "kcal", color: "#f97316" },
+                        { label: "Protein", value: n.protein, unit: "g", color: "#3b82f6" },
+                        { label: "Karbonhidrat", value: n.carbs, unit: "g", color: "#f59e0b" },
+                        { label: "Yağ", value: n.fat, unit: "g", color: "#10b981" },
+                      ].map((item) => (
+                        <div key={item.label} className="text-center p-2 rounded-xl" style={{ background: `${item.color}08` }}>
+                          <div className="font-bold text-base" style={{ color: item.color }}>{item.value}</div>
+                          <div className="text-[10px] text-gray-400 font-medium">{item.unit}</div>
+                          <div className="text-[10px] text-gray-500 mt-0.5">{item.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })()}
 
               {/* Meta info */}
               <div className="px-6 py-3 flex gap-3 flex-wrap border-b border-gray-100">
