@@ -25,7 +25,7 @@ export default function Home() {
         }}
       >
         <div className="max-w-4xl mx-auto text-center px-6 mb-6">
-          <p className="text-orange-500 text-[15px] font-semibold tracking-widest uppercase">
+          <p className="text-orange-500 text-[14px] font-medium tracking-[0.2em] uppercase">
             Ustalar Ne Diyor?
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function Home() {
           }}
         />
         <div className="relative z-10 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
+          <h2 className="text-3xl md:text-5xl font-semibold text-gray-800 mb-6 tracking-tight">
             Mutfak Maceranıza{" "}
             <span
               style={{
@@ -56,13 +56,13 @@ export default function Home() {
               Başlayın
             </span>
           </h2>
-          <p className="text-gray-500 text-lg md:text-xl mb-10">
+          <p className="text-gray-500 text-lg md:text-xl mb-10 font-light">
             Ücretsiz kaydolun, haftanızı planlayın, lezzetin tadını çıkarın.
           </p>
           <button
             onClick={() => setModalOpen(true)}
-            className="flex items-center justify-center mx-auto bg-orange-500 hover:bg-orange-600 text-white text-xl font-semibold px-12 py-5 md:px-14 md:py-6 rounded-full transition-all duration-300 w-full sm:w-auto gap-2"
-            style={{ boxShadow: "0 0 40px rgba(249,115,22,0.4)" }}
+            className="flex items-center justify-center mx-auto bg-orange-500 hover:bg-orange-600 text-white text-[17px] font-medium tracking-wide px-10 py-5 rounded-full transition-all duration-300 w-full sm:w-auto gap-2"
+            style={{ boxShadow: "0 8px 24px rgba(249,115,22,0.25)" }}
           >
             Hemen Başla — Ücretsiz
           </button>

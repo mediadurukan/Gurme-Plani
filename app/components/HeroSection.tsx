@@ -95,8 +95,8 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="font-bold mb-6 leading-tight"
-            style={{ fontSize: "clamp(3rem, 10vw, 6rem)" }}
+            className="font-semibold mb-6 leading-tight tracking-tight"
+            style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
           >
             <span className="text-gray-800">Gurme </span>
             <span className="shimmer-text">Planı</span>
@@ -107,12 +107,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-light"
             style={{ color: "#6b7280" }}
           >
             Haftanızı lezzetli tariflerle planlayın, alışveriş listelerinizi otomatik oluşturun,
             mutfağınızı bir{" "}
-            <span className="text-orange-400 font-semibold">gurme mutfağına</span> dönüştürün.
+            <span className="text-orange-400 font-medium">gurme mutfağına</span> dönüştürün.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -123,25 +123,25 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <motion.button
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.96 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setModalOpen(true)}
-              className="relative flex items-center justify-center text-white text-lg font-bold px-8 py-4 sm:py-5 rounded-full overflow-hidden w-full sm:w-auto"
+              className="relative flex items-center justify-center text-white text-[17px] font-medium tracking-wide px-10 py-4 sm:py-5 rounded-full overflow-hidden w-full sm:w-auto"
               style={{
-                background: "linear-gradient(135deg, #f97316 0%, #dc2626 100%)",
-                boxShadow: "0 8px 32px rgba(249,115,22,0.5), 0 0 0 0 rgba(249,115,22,0.3)",
+                background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+                boxShadow: "0 8px 24px rgba(249,115,22,0.25), 0 0 0 0 rgba(249,115,22,0.1)",
               }}
             >
               <span className="relative z-10">🚀 Planlamaya Başla</span>
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.04, borderColor: "rgba(249,115,22,0.8)" }}
-              whileTap={{ scale: 0.96 }}
-              className="flex items-center justify-center text-orange-400 text-lg font-semibold px-8 py-4 sm:py-5 rounded-full transition-all duration-300 w-full sm:w-auto"
+              whileHover={{ scale: 1.03, borderColor: "rgba(249,115,22,0.6)" }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center justify-center text-orange-500 text-[17px] font-medium tracking-wide px-10 py-4 sm:py-5 rounded-full transition-all duration-300 w-full sm:w-auto"
               style={{
-                border: "2px solid rgba(249,115,22,0.6)",
-                background: "rgba(249,115,22,0.05)",
+                border: "1px solid rgba(249,115,22,0.3)",
+                background: "rgba(249,115,22,0.03)",
               }}
             >
               Nasıl Çalışır? →
@@ -162,14 +162,14 @@ export default function HeroSection() {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="text-center p-5 md:p-6 rounded-3xl"
+                className="text-center p-5 md:p-6 rounded-[2rem]"
                 style={{
-                  background: "rgba(249,115,22,0.06)",
-                  border: "1px solid rgba(249,115,22,0.15)",
+                  background: "rgba(249,115,22,0.03)",
+                  border: "1px solid rgba(249,115,22,0.08)",
                 }}
               >
-                <div className="text-2xl font-bold text-orange-400">{stat.value}</div>
-                <div className="text-gray-500 text-[13px] mt-2">{stat.label}</div>
+                <div className="text-2xl font-semibold text-orange-400">{stat.value}</div>
+                <div className="text-gray-500 text-[13px] font-medium mt-1">{stat.label}</div>
               </div>
             ))}
           </motion.div>

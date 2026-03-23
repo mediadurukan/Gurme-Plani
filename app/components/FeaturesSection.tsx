@@ -28,7 +28,7 @@ export default function FeaturesSection() {
           >
             Özellikler
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl md:text-5xl font-semibold text-gray-800 mb-4 tracking-tight">
             Neden{" "}
             <span className="shimmer-text">Gurme Planı?</span>
           </h2>
@@ -45,20 +45,20 @@ export default function FeaturesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="card-hover flex flex-col items-center text-center rounded-3xl p-8 cursor-default"
+              className="card-hover flex flex-col items-center text-center rounded-[2rem] p-8 cursor-default"
               style={{
-                background: "rgba(249,115,22,0.04)",
-                border: "1px solid rgba(249,115,22,0.12)",
+                background: "rgba(249,115,22,0.02)",
+                border: "1px solid rgba(249,115,22,0.08)",
               }}
             >
               <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5"
-                style={{ background: `rgba(249,115,22,0.1)`, border: `1px solid rgba(249,115,22,0.2)` }}
+                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5"
+                style={{ background: `rgba(249,115,22,0.05)`, border: `1px solid rgba(249,115,22,0.1)` }}
               >
                 {f.icon}
               </div>
-              <h3 className="text-gray-800 font-bold text-lg mb-3">{f.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-[15px]">{f.desc}</p>
+              <h3 className="text-gray-800 font-medium text-lg mb-2">{f.title}</h3>
+              <p className="text-gray-500 text-[15px] leading-relaxed font-light">{f.desc}</p>
             </motion.div>
           ))}
         </div>

@@ -34,23 +34,23 @@ export default function QuoteSlider() {
           >
             <div className="text-5xl mb-5">{quotes[current].emoji}</div>
             <p
-              className="text-xl md:text-2xl italic leading-relaxed mb-6 font-medium"
-              style={{ color: "#374151" }}
+              className="text-lg md:text-xl italic leading-[1.8] tracking-wide mb-6 font-normal w-[90%] mx-auto"
+              style={{ color: "#4b5563" }}
             >
               &ldquo;{quotes[current].text}&rdquo;
             </p>
             <div className="flex flex-col items-center gap-1">
               <span
-                className="font-bold text-lg px-4 py-1 rounded-full"
+                className="font-medium text-base tracking-wide px-4 py-1.5 rounded-full"
                 style={{
-                  background: "rgba(249,115,22,0.12)",
-                  border: "1px solid rgba(249,115,22,0.3)",
-                  color: "#fb923c",
+                  background: "rgba(249,115,22,0.05)",
+                  border: "1px solid rgba(249,115,22,0.15)",
+                  color: "#ea580c",
                 }}
               >
                 — {quotes[current].author}
               </span>
-              <span className="text-gray-600 text-sm mt-1">{quotes[current].role}</span>
+              <span className="text-gray-500 font-light text-[13px] mt-1.5">{quotes[current].role}</span>
             </div>
           </motion.div>
         </AnimatePresence>
