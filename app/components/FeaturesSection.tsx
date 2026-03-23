@@ -13,9 +13,8 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-24 relative w-full">
-      <div className="flex flex-col items-center px-6">
-      <div className="w-full max-w-4xl">
+    <section className="py-24 relative w-full px-4 sm:px-8">
+      <div className="max-w-[1280px] mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +37,7 @@ export default function FeaturesSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-14">
           {features.map((f, i) => (
             <motion.div
               key={i}
@@ -46,24 +45,23 @@ export default function FeaturesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="card-hover rounded-2xl p-6 cursor-default"
+              className="card-hover flex flex-col items-center text-center rounded-3xl p-10 md:p-12 cursor-default"
               style={{
                 background: "rgba(249,115,22,0.04)",
                 border: "1px solid rgba(249,115,22,0.12)",
               }}
             >
               <div
-                className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-5"
+                className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-6"
                 style={{ background: `rgba(249,115,22,0.1)`, border: `1px solid rgba(249,115,22,0.2)` }}
               >
                 {f.icon}
               </div>
-              <h3 className="text-gray-800 font-bold text-lg mb-2">{f.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-sm">{f.desc}</p>
+              <h3 className="text-gray-800 font-bold text-xl mb-4">{f.title}</h3>
+              <p className="text-gray-500 leading-relaxed text-base">{f.desc}</p>
             </motion.div>
           ))}
         </div>
-      </div>
       </div>
     </section>
   );

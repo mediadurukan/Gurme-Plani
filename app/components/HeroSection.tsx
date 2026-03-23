@@ -120,13 +120,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <motion.button
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => setModalOpen(true)}
-              className="relative text-white text-lg font-bold px-16 py-5 rounded-full overflow-hidden"
+              className="relative text-white text-xl font-bold px-20 py-6 rounded-full overflow-hidden w-full sm:w-auto"
               style={{
                 background: "linear-gradient(135deg, #f97316 0%, #dc2626 100%)",
                 boxShadow: "0 8px 32px rgba(249,115,22,0.5), 0 0 0 0 rgba(249,115,22,0.3)",
@@ -138,7 +138,7 @@ export default function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.04, borderColor: "rgba(249,115,22,0.8)" }}
               whileTap={{ scale: 0.96 }}
-              className="text-orange-400 text-lg font-semibold px-16 py-5 rounded-full transition-all duration-300"
+              className="text-orange-400 text-xl font-semibold px-20 py-6 rounded-full transition-all duration-300 w-full sm:w-auto"
               style={{
                 border: "2px solid rgba(249,115,22,0.6)",
                 background: "rgba(249,115,22,0.05)",
@@ -153,7 +153,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="mt-20 grid grid-cols-3 gap-6 max-w-xl mx-auto w-full"
+            className="mt-24 grid grid-cols-3 gap-8 md:gap-12 max-w-3xl mx-auto w-full"
           >
             {[
               { value: "500+", label: "Tarif" },
@@ -162,14 +162,14 @@ export default function HeroSection() {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="text-center p-4 rounded-2xl"
+                className="text-center p-6 md:p-8 rounded-3xl"
                 style={{
                   background: "rgba(249,115,22,0.06)",
                   border: "1px solid rgba(249,115,22,0.15)",
                 }}
               >
-                <div className="text-2xl font-bold text-orange-400">{stat.value}</div>
-                <div className="text-gray-500 text-xs mt-1">{stat.label}</div>
+                <div className="text-3xl font-bold text-orange-400">{stat.value}</div>
+                <div className="text-gray-500 text-sm mt-3">{stat.label}</div>
               </div>
             ))}
           </motion.div>
