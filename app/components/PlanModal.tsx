@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { generateMealPlan, REGION_SLUG_MAP } from "../lib/mealPlan";
+import { generateMealPlan } from "../lib/mealPlan";
 import { MealPlan } from "../lib/types";
 
 interface PlanModalProps {
@@ -41,8 +41,9 @@ export default function PlanModal({ isOpen, onClose, onPlanReady }: PlanModalPro
     setStep(4);
     setError(null);
 
-    const slug = REGION_SLUG_MAP[regionLabel] ?? "all";
-    const regionParam = slug !== "all" ? `?region=${slug}` : "";
+    const regionParam = (regionLabel && regionLabel !== "Tüm Bölgeler")
+      ? `?region=${encodeURIComponent(regionLabel)}`
+      : "";
 
     try {
       const res = await fetch(`/api/recipes${regionParam}`);
