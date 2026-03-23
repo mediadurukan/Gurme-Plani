@@ -9,6 +9,12 @@ export async function GET(req: NextRequest) {
     process.env.SUPABASE_URL,
     process.env.SUPABASE_SERVICE_KEY
   )
+  const debug      = req.nextUrl.searchParams.get('debug')
+  if (debug === 'regions') {
+    const { data } = await supabase.from('recipes').select('region_name').limit(500)
+    const unique = [...new Set(data?.map(r => r.region_name))]
+    return NextResponse.json({ regions: unique, total: data?.length })
+  }
   const region     = req.nextUrl.searchParams.get('region')
   const search     = req.nextUrl.searchParams.get('search')
   const difficulty = req.nextUrl.searchParams.get('difficulty')
