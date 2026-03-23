@@ -35,7 +35,7 @@ export default function QuoteSlider() {
             <div className="text-5xl mb-5">{quotes[current].emoji}</div>
             <p
               className="text-xl md:text-2xl italic leading-relaxed mb-6 font-medium"
-              style={{ color: "#e5e7eb" }}
+              style={{ color: "#374151" }}
             >
               &ldquo;{quotes[current].text}&rdquo;
             </p>
