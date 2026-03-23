@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function Navbar() {
+export default function Navbar({ onStartClick }: { onStartClick?: () => void }) {
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -38,6 +38,7 @@ export default function Navbar() {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        onClick={onStartClick}
         className="flex items-center justify-center text-white text-[15px] font-bold px-6 py-2.5 rounded-full relative overflow-hidden flex-shrink-0"
         style={{
           background: "linear-gradient(135deg, #f97316, #ea580c)",

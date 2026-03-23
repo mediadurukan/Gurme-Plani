@@ -1,20 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import QuoteSlider from "./components/QuoteSlider";
 import FeaturesSection from "./components/FeaturesSection";
 import PlanModal from "./components/PlanModal";
+import MealPlanView from "./components/MealPlanView";
+import { MealPlan } from "./lib/types";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [plan, setPlan] = useState<MealPlan | null>(null);
 
   return (
     <main className="min-h-screen w-full" style={{ background: "#ffffff" }}>
-      <PlanModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-      <Navbar />
-      <HeroSection />
+      <PlanModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onPlanReady={(p) => { setPlan(p); setModalOpen(false); }}
+      />
+
+      <AnimatePresence>
+        {plan && (
+          <MealPlanView plan={plan} onClose={() => setPlan(null)} />
+        )}
+      </AnimatePresence>
+
+      <Navbar onStartClick={() => setModalOpen(true)} />
+      <HeroSection onStartClick={() => setModalOpen(true)} />
 
       {/* Quote Slider Section */}
       <section
