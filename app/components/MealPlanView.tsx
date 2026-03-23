@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { MealPlan, Recipe, DayMeal } from "../lib/types";
 import RecipeDetailModal from "./RecipeDetailModal";
 import ShoppingListPanel from "./ShoppingListPanel";
@@ -21,22 +21,13 @@ const DIFFICULTY_COLOR: Record<string, string> = {
   zor: "#ef4444",
 }
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 20, scale: 0.97 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0, scale: 1,
-    transition: { duration: 0.4, delay: i * 0.07, ease: [0.25, 0.1, 0.25, 1] },
-  }),
-}
-
 function RecipeCard({ recipe, onClick, index }: { recipe: Recipe; onClick: () => void; index: number }) {
   const n = estimateNutrition(recipe);
   return (
     <motion.button
-      custom={index}
-      variants={cardVariants}
-      initial="hidden"
-      animate="visible"
+      initial={{ opacity: 0, y: 20, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.4, delay: index * 0.07 }}
       whileHover={{ scale: 1.03, y: -4, boxShadow: "0 16px 40px rgba(249,115,22,0.18)" }}
       whileTap={{ scale: 0.97 }}
       onClick={onClick}
