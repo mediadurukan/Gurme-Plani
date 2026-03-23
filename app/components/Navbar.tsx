@@ -38,7 +38,7 @@ export default function Navbar() {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="text-white text-base font-bold px-8 py-3 rounded-full relative overflow-hidden flex-shrink-0"
+        className="flex items-center justify-center text-white text-[15px] font-bold px-6 py-2.5 rounded-full relative overflow-hidden flex-shrink-0"
         style={{
           background: "linear-gradient(135deg, #f97316, #ea580c)",
           boxShadow: "0 4px 20px rgba(249,115,22,0.4)",

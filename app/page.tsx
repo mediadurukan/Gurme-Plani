@@ -18,14 +18,14 @@ export default function Home() {
 
       {/* Quote Slider Section */}
       <section
-        className="py-20 relative w-full flex flex-col items-center"
+        className="py-12 relative w-full flex flex-col items-center"
         style={{
           background:
             "linear-gradient(to bottom, #ffffff, rgba(249,115,22,0.05), #ffffff)",
         }}
       >
-        <div className="max-w-5xl mx-auto text-center px-6 mb-8">
-          <p className="text-orange-500 text-base font-semibold tracking-widest uppercase">
+        <div className="max-w-4xl mx-auto text-center px-6 mb-6">
+          <p className="text-orange-500 text-[15px] font-semibold tracking-widest uppercase">
             Ustalar Ne Diyor?
           </p>
         </div>
@@ -43,8 +43,8 @@ export default function Home() {
               "radial-gradient(ellipse at center, rgba(249,115,22,0.08) 0%, transparent 70%)",
           }}
         />
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
             Mutfak Maceranıza{" "}
             <span
               style={{
@@ -56,12 +56,12 @@ export default function Home() {
               Başlayın
             </span>
           </h2>
-          <p className="text-gray-500 text-xl md:text-2xl mb-12">
+          <p className="text-gray-500 text-lg md:text-xl mb-10">
             Ücretsiz kaydolun, haftanızı planlayın, lezzetin tadını çıkarın.
           </p>
           <button
             onClick={() => setModalOpen(true)}
-            className="flex items-center justify-center mx-auto bg-orange-500 hover:bg-orange-600 text-white text-2xl font-semibold px-14 py-6 md:px-20 md:py-8 rounded-full transition-all duration-300 w-full sm:w-auto gap-3"
+            className="flex items-center justify-center mx-auto bg-orange-500 hover:bg-orange-600 text-white text-xl font-semibold px-12 py-5 md:px-14 md:py-6 rounded-full transition-all duration-300 w-full sm:w-auto gap-2"
             style={{ boxShadow: "0 0 40px rgba(249,115,22,0.4)" }}
           >
             Hemen Başla — Ücretsiz
