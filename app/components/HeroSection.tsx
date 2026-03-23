@@ -126,7 +126,7 @@ export default function HeroSection() {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => setModalOpen(true)}
-              className="relative flex items-center justify-center text-white text-xl font-bold px-12 py-6 sm:py-7 rounded-full overflow-hidden w-full sm:w-auto"
+              className="relative flex items-center justify-center text-white text-xl font-bold px-16 py-9 sm:py-10 rounded-full overflow-hidden w-full sm:w-auto"
               style={{
                 background: "linear-gradient(135deg, #f97316 0%, #dc2626 100%)",
                 boxShadow: "0 8px 32px rgba(249,115,22,0.5), 0 0 0 0 rgba(249,115,22,0.3)",
@@ -138,7 +138,7 @@ export default function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.04, borderColor: "rgba(249,115,22,0.8)" }}
               whileTap={{ scale: 0.96 }}
-              className="flex items-center justify-center text-orange-400 text-xl font-semibold px-12 py-6 sm:py-7 rounded-full transition-all duration-300 w-full sm:w-auto"
+              className="flex items-center justify-center text-orange-400 text-xl font-semibold px-16 py-9 sm:py-10 rounded-full transition-all duration-300 w-full sm:w-auto"
               style={{
                 border: "2px solid rgba(249,115,22,0.6)",
                 background: "rgba(249,115,22,0.05)",

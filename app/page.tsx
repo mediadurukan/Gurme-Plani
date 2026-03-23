@@ -61,7 +61,7 @@ export default function Home() {
           </p>
           <button
             onClick={() => setModalOpen(true)}
-            className="flex items-center justify-center mx-auto bg-orange-500 hover:bg-orange-600 text-white text-2xl font-semibold px-14 py-7 md:px-20 md:py-8 rounded-full transition-all duration-300 w-full sm:w-auto gap-3"
+            className="flex items-center justify-center mx-auto bg-orange-500 hover:bg-orange-600 text-white text-2xl font-semibold px-16 py-10 md:px-24 md:py-12 rounded-full transition-all duration-300 w-full sm:w-auto gap-3"
             style={{ boxShadow: "0 0 40px rgba(249,115,22,0.4)" }}
           >
             Hemen Başla — Ücretsiz
