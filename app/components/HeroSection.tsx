@@ -98,7 +98,7 @@ export default function HeroSection() {
             className="font-bold mb-6 leading-tight"
             style={{ fontSize: "clamp(3rem, 10vw, 6rem)" }}
           >
-            <span className="text-white">Gurme </span>
+            <span className="text-gray-800">Gurme </span>
             <span className="shimmer-text">Planı</span>
           </motion.h1>
 
@@ -108,7 +108,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed"
-            style={{ color: "#9ca3af" }}
+            style={{ color: "#6b7280" }}
           >
             Haftanızı lezzetli tariflerle planlayın, alışveriş listelerinizi otomatik oluşturun,
             mutfağınızı bir{" "}
@@ -178,7 +178,7 @@ export default function HeroSection() {
         {/* Bottom fade */}
         <div
           className="absolute bottom-0 left-0 right-0 h-40 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to top, #0a0a0a, transparent)" }}
+          style={{ background: "linear-gradient(to top, #ffffff, transparent)" }}
         />
       </section>
     </>

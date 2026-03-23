@@ -45,9 +45,9 @@ export default function PlanModal({ isOpen, onClose }: PlanModalProps) {
               onClick={(e) => e.stopPropagation()}
               className="rounded-3xl p-8 w-full max-w-sm"
               style={{
-                background: "linear-gradient(145deg, #141414, #1a1a1a)",
+                background: "linear-gradient(145deg, #ffffff, #f9f9f9)",
                 border: "1px solid rgba(249,115,22,0.3)",
-                boxShadow: "0 0 80px rgba(249,115,22,0.2), 0 40px 80px rgba(0,0,0,0.6)",
+                boxShadow: "0 0 80px rgba(249,115,22,0.15), 0 40px 80px rgba(0,0,0,0.1)",
               }}
             >
               {/* Header */}
@@ -59,7 +59,7 @@ export default function PlanModal({ isOpen, onClose }: PlanModalProps) {
                 >
                   🍽️
                 </motion.div>
-                <h2 className="text-2xl font-bold text-white mb-1">Plan Türünü Seç</h2>
+                <h2 className="text-2xl font-bold text-gray-800 mb-1">Plan Türünü Seç</h2>
                 <p className="text-gray-500 text-sm">Ne kadar süreliğine planlamak istersin?</p>
               </div>
 
@@ -94,7 +94,7 @@ export default function PlanModal({ isOpen, onClose }: PlanModalProps) {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="text-white font-bold text-base">{opt.title}</span>
+                          <span className="text-gray-800 font-bold text-base">{opt.title}</span>
                           <span
                             className="text-xs font-semibold px-2 py-0.5 rounded-full"
                             style={{ background: "rgba(249,115,22,0.2)", color: "#fb923c" }}

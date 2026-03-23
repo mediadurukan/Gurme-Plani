@@ -11,7 +11,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center" style={{ background: "#0a0a0a" }}>
+    <main className="min-h-screen w-full flex flex-col items-center" style={{ background: "#ffffff" }}>
       <PlanModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       <Navbar />
       <HeroSection />
@@ -21,7 +21,7 @@ export default function Home() {
         className="py-8 relative w-full"
         style={{
           background:
-            "linear-gradient(to bottom, #0a0a0a, rgba(249,115,22,0.05), #0a0a0a)",
+            "linear-gradient(to bottom, #ffffff, rgba(249,115,22,0.05), #ffffff)",
         }}
       >
         <div className="max-w-4xl mx-auto text-center px-6 mb-4">
@@ -40,11 +40,11 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(249,115,22,0.1) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(249,115,22,0.08) 0%, transparent 70%)",
           }}
         />
         <div className="relative z-10 max-w-2xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
             Mutfak Maceranıza{" "}
             <span
               style={{
@@ -56,7 +56,7 @@ export default function Home() {
               Başlayın
             </span>
           </h2>
-          <p className="text-gray-400 text-xl mb-10">
+          <p className="text-gray-500 text-xl mb-10">
             Ücretsiz kaydolun, haftanızı planlayın, lezzetin tadını çıkarın.
           </p>
           <button
@@ -71,8 +71,8 @@ export default function Home() {
 
       {/* Footer */}
       <footer
-        className="border-t py-8 text-center text-gray-600 text-sm w-full"
-        style={{ borderColor: "rgba(249,115,22,0.1)" }}
+        className="border-t py-8 text-center text-gray-400 text-sm w-full"
+        style={{ borderColor: "rgba(249,115,22,0.15)" }}
       >
         © 2026 Gurme Planı · Tüm hakları saklıdır 🍊
       </footer>
