@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { MealPlan, Recipe, DayMeal } from "../lib/types";
 import RecipeDetailModal from "./RecipeDetailModal";
 import ShoppingListPanel from "./ShoppingListPanel";
@@ -21,11 +21,11 @@ const DIFFICULTY_COLOR: Record<string, string> = {
   zor: "#ef4444",
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.97 },
   visible: (i: number) => ({
     opacity: 1, y: 0, scale: 1,
-    transition: { duration: 0.4, delay: i * 0.07, ease: "easeOut" },
+    transition: { duration: 0.4, delay: i * 0.07, ease: [0.25, 0.1, 0.25, 1] },
   }),
 }
 

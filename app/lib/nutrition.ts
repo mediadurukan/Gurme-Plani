@@ -51,7 +51,7 @@ export function estimateNutrition(recipe: Recipe): Nutrition {
 }
 
 export function sumNutrition(items: (Nutrition | null)[]): Nutrition {
-  return items.reduce(
+  return items.reduce<Nutrition>(
     (acc, n) => n ? {
       calories: acc.calories + n.calories,
       protein: acc.protein + n.protein,
