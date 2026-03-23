@@ -10,14 +10,14 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4"
       style={{
-        background: "rgba(10,10,10,0.8)",
+        background: "rgba(255,255,255,0.85)",
         backdropFilter: "blur(16px)",
         borderBottom: "1px solid rgba(249,115,22,0.1)",
       }}
     >
       <div className="flex items-center gap-2">
         <span className="text-2xl">🍊</span>
-        <span className="text-white font-bold text-xl tracking-wide">
+        <span className="text-gray-800 font-bold text-xl tracking-wide">
           Gurme <span className="shimmer-text">Planı</span>
         </span>
       </div>

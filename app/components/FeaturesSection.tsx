@@ -28,7 +28,7 @@ export default function FeaturesSection() {
           >
             Özellikler
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Neden{" "}
             <span className="shimmer-text">Gurme Planı?</span>
           </h2>
@@ -47,7 +47,7 @@ export default function FeaturesSection() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="card-hover rounded-2xl p-6 cursor-default"
               style={{
-                background: "rgba(255,255,255,0.03)",
+                background: "rgba(249,115,22,0.04)",
                 border: "1px solid rgba(249,115,22,0.12)",
               }}
             >
@@ -57,7 +57,7 @@ export default function FeaturesSection() {
               >
                 {f.icon}
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">{f.title}</h3>
+              <h3 className="text-gray-800 font-bold text-lg mb-2">{f.title}</h3>
               <p className="text-gray-500 leading-relaxed text-sm">{f.desc}</p>
             </motion.div>
           ))}
