@@ -13,8 +13,8 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-24 px-6 relative w-full overflow-hidden">
-      <div className="max-w-5xl mx-auto w-full">
+    <section className="py-24 px-6 relative w-full">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
