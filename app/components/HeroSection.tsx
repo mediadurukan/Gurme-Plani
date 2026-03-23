@@ -126,7 +126,7 @@ export default function HeroSection() {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => setModalOpen(true)}
-              className="relative text-white text-lg font-bold px-10 py-4 rounded-full overflow-hidden"
+              className="relative text-white text-lg font-bold px-16 py-5 rounded-full overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #f97316 0%, #dc2626 100%)",
                 boxShadow: "0 8px 32px rgba(249,115,22,0.5), 0 0 0 0 rgba(249,115,22,0.3)",
@@ -138,9 +138,9 @@ export default function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.04, borderColor: "rgba(249,115,22,0.8)" }}
               whileTap={{ scale: 0.96 }}
-              className="text-orange-400 text-lg font-semibold px-10 py-4 rounded-full transition-all duration-300"
+              className="text-orange-400 text-lg font-semibold px-16 py-5 rounded-full transition-all duration-300"
               style={{
-                border: "2px solid rgba(249,115,22,0.4)",
+                border: "2px solid rgba(249,115,22,0.6)",
                 background: "rgba(249,115,22,0.05)",
               }}
             >
@@ -153,7 +153,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="mt-20 grid grid-cols-3 gap-6 max-w-md mx-auto"
+            className="mt-20 grid grid-cols-3 gap-6 max-w-xl mx-auto w-full"
           >
             {[
               { value: "500+", label: "Tarif" },
