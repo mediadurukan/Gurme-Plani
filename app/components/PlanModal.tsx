@@ -46,16 +46,26 @@ export default function PlanModal({ isOpen, onClose, onPlanReady }: PlanModalPro
 
     try {
       const res = await fetch(`/api/recipes${regionParam}`);
-      if (!res.ok) throw new Error("Tarifler yüklenemedi");
-      const { recipes, error: apiError } = await res.json();
-      if (apiError) throw new Error(apiError);
-      if (!recipes || recipes.length === 0) throw new Error("Bu bölgede tarif bulunamadı");
+      if (!res.ok) throw new Error(`API hatası: ${res.status}`);
+      const json = await res.json();
+      if (json.error) throw new Error(json.error);
+
+      let recipes = json.recipes ?? [];
+
+      // Yeterli tarif yoksa tüm bölgelerden getir
+      if (recipes.length < 20) {
+        const fallback = await fetch('/api/recipes');
+        const fallbackJson = await fallback.json();
+        recipes = fallbackJson.recipes ?? [];
+      }
+
+      if (!recipes.length) throw new Error("Tarif bulunamadı");
 
       const plan = generateMealPlan(recipes, planType, regionLabel);
       onPlanReady(plan);
       onClose();
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Bir hata oluştu");
+      setError(err instanceof Error ? err.message : String(err));
       setStep(3);
     }
   }
