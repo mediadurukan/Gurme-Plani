@@ -153,6 +153,7 @@ export default function RecipeDetailModal({ recipe, onClose, onPhotoUploaded }: 
               {/* Meta */}
               <div className="px-6 py-3 flex gap-3 flex-wrap border-b border-gray-100">
                 {recipe.prep_time > 0 && <span className="flex items-center gap-1 text-sm text-gray-500">⏱ {recipe.prep_time + (recipe.cook_time ?? 0)} dk</span>}
+                {recipe.servings > 0 && <span className="flex items-center gap-1 text-sm text-gray-500">👥 {recipe.servings} kişilik</span>}
                 {recipe.difficulty && (
                   <span className="text-sm font-medium px-2 py-0.5 rounded-full" style={{ background: `${DIFFICULTY_COLOR[recipe.difficulty]}18`, color: DIFFICULTY_COLOR[recipe.difficulty] }}>
                     {DIFFICULTY_LABEL[recipe.difficulty] ?? recipe.difficulty}
