@@ -1,8 +1,12 @@
 import { Recipe, DayMeal, MealPlan } from './types'
 
-const SIDE_TAGS = ['tatlı', 'salata', 'çorba', 'meze']
-const BREAKFAST_TAGS = ['kahvaltı', 'peynir', 'yumurta', 'menemen', 'kaygana', 'pişi', 'gözleme', 'börek', 'poğaça', 'açma', 'simit', 'reçel', 'bal', 'tereyağı', 'zeytin']
-const BREAD_TAGS = ['ekmek', 'lavaş', 'pide', 'bazlama', 'yufka', 'dürüm', 'sandviç', 'tost']
+const BREAKFAST_TAGS = ['kahvaltı', 'peynir', 'yumurta', 'menemen', 'kaygana', 'pişi', 'gözleme', 'poğaça', 'açma', 'simit', 'reçel', 'bal', 'tereyağı', 'zeytin']
+const BREAD_TAGS    = ['ekmek', 'lavaş', 'bazlama', 'yufka', 'dürüm', 'sandviç', 'tost', 'peksimet']
+const DESSERT_TAGS  = ['tatlı', 'kurabiye', 'pasta', 'baklava', 'kadayıf', 'sütlaç', 'helva']
+const GARNISH_TAGS  = ['pilav', 'bulgur', 'makarna', 'erişte', 'pirinç']
+const SALAD_TAGS    = ['salata', 'yoğurt', 'cacık', 'ayran', 'meze', 'turşu']
+const PROTEIN_TAGS  = ['et', 'tavuk', 'balık', 'hamsi', 'kebap', 'köfte', 'sucuk', 'kıyma', 'kuzu', 'dana', 'levrek', 'sardalya']
+
 const DAY_NAMES = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar']
 
 function shuffle<T>(arr: T[]): T[] {
@@ -14,61 +18,66 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-function pickFrom(pool: Recipe[], n: number, usedIds: Set<number>): Recipe[] {
+function pickOne(pool: Recipe[], usedIds: Set<number>): Recipe | null {
   const available = shuffle(pool.filter(r => !usedIds.has(r.id)))
-  const picked = available.slice(0, n)
-  // If not enough unique, allow reuse
-  if (picked.length < n) {
-    const extra = shuffle(pool).slice(0, n - picked.length)
-    picked.push(...extra)
-  }
-  picked.forEach(r => usedIds.add(r.id))
-  return picked.slice(0, n)
+  const picked = available[0] ?? (pool.length ? shuffle(pool)[0] : null)
+  if (picked) usedIds.add(picked.id)
+  return picked
 }
 
 export function generateMealPlan(recipes: Recipe[], type: 'daily' | 'weekly', regionLabel: string): MealPlan {
-  const NON_MAIN = [...SIDE_TAGS, ...BREAKFAST_TAGS, ...BREAD_TAGS]
+  const tags = (r: Recipe) => r.tags ?? []
 
-  const breakfastPool = recipes.filter(r =>
-    r.tags?.some(t => BREAKFAST_TAGS.includes(t)) ||
-    r.name.toLowerCase().match(/peynir|yumurta|menemen|gözleme|börek|poğaça|simit|kahvaltı/)
-  )
-  const dessertPool = recipes.filter(r => r.tags?.includes('tatlı'))
-  const sidePool = recipes.filter(r =>
-    r.tags?.some(t => ['salata', 'çorba', 'meze'].includes(t)) &&
-    !r.tags?.includes('tatlı') &&
-    !r.tags?.some(t => BREAKFAST_TAGS.includes(t))
-  )
-  // Main dishes: exclude breakfast, sides, and bread-only items
+  // Garnitür: pilav/bulgur/makarna AMA protein içermeyen (hamsili pilav = main, sade pilav = garnish)
+  const garnishPool = recipes.filter(r => {
+    const t = tags(r)
+    return t.some(x => GARNISH_TAGS.includes(x)) && !t.some(x => PROTEIN_TAGS.includes(x)) && !t.includes('tatlı')
+  })
+
+  // Salata / yoğurt / cacık
+  const saladPool = recipes.filter(r => {
+    const t = tags(r)
+    return t.some(x => SALAD_TAGS.includes(x)) && !t.some(x => DESSERT_TAGS.includes(x))
+  })
+
+  // Tatlı
+  const dessertPool = recipes.filter(r => tags(r).some(x => DESSERT_TAGS.includes(x)))
+
+  // Ana yemek: et veya sebze yemeği
+  const NON_MAIN = [...BREAKFAST_TAGS, ...BREAD_TAGS, ...DESSERT_TAGS, ...GARNISH_TAGS, ...SALAD_TAGS]
   const mainPool = recipes.filter(r => {
-    const tags = r.tags ?? []
-    const isBread = tags.some(t => BREAD_TAGS.includes(t)) && !tags.some(t => ['et', 'tavuk', 'balık', 'kebap', 'köfte', 'pilav', 'sebze', 'güveç', 'tencere'].includes(t))
-    return !tags.some(t => NON_MAIN.includes(t)) && !isBread &&
+    const t = tags(r)
+    const isBread = t.some(x => BREAD_TAGS.includes(x)) && !t.some(x => PROTEIN_TAGS.includes(x))
+    const isGarnishOnly = t.some(x => GARNISH_TAGS.includes(x)) && !t.some(x => PROTEIN_TAGS.includes(x))
+    return !t.some(x => NON_MAIN.includes(x)) && !isBread && !isGarnishOnly &&
       !r.name.toLowerCase().match(/peynir|yumurta|menemen|gözleme|poğaça|simit|lavaş|bazlama/)
   })
 
-  // Fallbacks if categories are too small
-  const bfPool = breakfastPool.length >= 1 ? breakfastPool : recipes.filter(r => r.difficulty === 'kolay').slice(0, 10)
-  const dsPool = dessertPool.length >= 1 ? dessertPool : shuffle(recipes).slice(0, 10)
-  const sdPool = sidePool.length >= 1 ? sidePool : shuffle(recipes.filter(r => !r.tags?.includes('tatlı'))).slice(0, Math.ceil(recipes.length / 3))
-  const mnPool = mainPool.length >= 4 ? mainPool : recipes.filter(r => !r.tags?.some(t => BREAKFAST_TAGS.includes(t)) && !r.tags?.includes('tatlı'))
+  // Fallback'ler
+  const mnPool  = mainPool.length   >= 4 ? mainPool   : recipes.filter(r => !tags(r).some(x => [...BREAKFAST_TAGS, ...DESSERT_TAGS].includes(x)))
+  const gnPool  = garnishPool.length >= 2 ? garnishPool : recipes.filter(r => tags(r).some(x => GARNISH_TAGS.includes(x)))
+  const slPool  = saladPool.length  >= 2 ? saladPool  : recipes.filter(r => tags(r).some(x => SALAD_TAGS.includes(x)))
+  const dsPool  = dessertPool.length >= 2 ? dessertPool : shuffle(recipes).slice(0, 10)
 
   const dayCount = type === 'weekly' ? 7 : 1
-  const usedIds = new Set<number>()
+  const usedIds  = new Set<number>()
   const days: DayMeal[] = []
 
   for (let i = 0; i < dayCount; i++) {
-    const lunchMains = pickFrom(mnPool, 2, usedIds)
-    const lunchSide = pickFrom(sdPool, 1, usedIds)
-    const lunchDessert = pickFrom(dsPool, 1, usedIds)
-    const dinnerMains = pickFrom(mnPool, 2, usedIds)
-    const dinnerSide = pickFrom(sdPool, 1, usedIds)
-    const dinnerDessert = pickFrom(dsPool, 1, usedIds)
-
     days.push({
       dayName: type === 'weekly' ? DAY_NAMES[i] : 'Bugün',
-      lunch: { mains: lunchMains, side: lunchSide[0] ?? null, dessert: lunchDessert[0] ?? null },
-      dinner: { mains: dinnerMains, side: dinnerSide[0] ?? null, dessert: dinnerDessert[0] ?? null },
+      lunch: {
+        main:    pickOne(mnPool,  usedIds),
+        garnish: pickOne(gnPool,  usedIds),
+        salad:   pickOne(slPool,  usedIds),
+        dessert: pickOne(dsPool,  usedIds),
+      },
+      dinner: {
+        main:    pickOne(mnPool,  usedIds),
+        garnish: pickOne(gnPool,  usedIds),
+        salad:   pickOne(slPool,  usedIds),
+        dessert: pickOne(dsPool,  usedIds),
+      },
     })
   }
 
@@ -76,11 +85,11 @@ export function generateMealPlan(recipes: Recipe[], type: 'daily' | 'weekly', re
 }
 
 export const REGION_SLUG_MAP: Record<string, string> = {
-  'Marmara': 'marmara',
-  'Ege': 'ege',
-  'Akdeniz': 'akdeniz',
-  'İç Anadolu': 'ic-anadolu',
-  'Karadeniz': 'karadeniz',
-  'Doğu Anadolu': 'dogu-anadolu',
-  'Güneydoğu Anadolu': 'guneydogu-anadolu',
+  'Marmara':             'marmara',
+  'Ege':                 'ege',
+  'Akdeniz':             'akdeniz',
+  'İç Anadolu':          'ic-anadolu',
+  'Karadeniz':           'karadeniz',
+  'Doğu Anadolu':        'dogu-anadolu',
+  'Güneydoğu Anadolu':   'guneydogu-anadolu',
 }

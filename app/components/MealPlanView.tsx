@@ -102,21 +102,23 @@ function TaggedCard({ recipe, label, color, onClick, index }: { recipe: Recipe; 
 }
 
 function MealSection({
-  icon, label, mains, side, dessert, onRecipeClick, sectionIndex,
+  icon, label, section, onRecipeClick, sectionIndex,
 }: {
   icon: string;
   label: string;
-  mains: Recipe[];
-  side: Recipe | null;
-  dessert: Recipe | null;
+  section: { main: Recipe | null; garnish: Recipe | null; salad: Recipe | null; dessert: Recipe | null };
   onRecipeClick: (r: Recipe) => void;
   sectionIndex: number;
 }) {
-  const totalNutrition = sumNutrition([
-    ...mains.map(estimateNutrition),
-    side ? estimateNutrition(side) : null,
-    dessert ? estimateNutrition(dessert) : null,
-  ])
+  const items = [section.main, section.garnish, section.salad, section.dessert].filter(Boolean) as Recipe[]
+  const totalNutrition = sumNutrition(items.map(estimateNutrition))
+
+  const CARD_CONFIGS = [
+    { recipe: section.main,    label: "Ana Yemek",  color: "#ea580c" },
+    { recipe: section.garnish, label: "Garnitür",   color: "#2563eb" },
+    { recipe: section.salad,   label: "Salata",     color: "#16a34a" },
+    { recipe: section.dessert, label: "Tatlı",      color: "#a855f7" },
+  ]
 
   return (
     <motion.div
@@ -141,20 +143,16 @@ function MealSection({
         <h3 className="text-gray-700 font-semibold text-base">{label}</h3>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        {mains.map((r, i) => (
-          <RecipeCard key={r.id} recipe={r} onClick={() => onRecipeClick(r)} index={i} />
-        ))}
-        {side && (
-          <TaggedCard recipe={side} label="Yan Yemek" color="#fb923c" onClick={() => onRecipeClick(side)} index={mains.length} />
-        )}
-        {dessert && (
-          <TaggedCard recipe={dessert} label="Tatlı" color="#a855f7" onClick={() => onRecipeClick(dessert)} index={mains.length + (side ? 1 : 0)} />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {CARD_CONFIGS.map(({ recipe, label: cardLabel, color }, i) =>
+          recipe ? (
+            <TaggedCard key={recipe.id} recipe={recipe} label={cardLabel} color={color} onClick={() => onRecipeClick(recipe)} index={i} />
+          ) : null
         )}
       </div>
 
       <motion.div
-        className="mt-3 flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm"
+        className="mt-3 flex flex-wrap items-center gap-3 px-4 py-2.5 rounded-xl text-sm"
         style={{ background: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.1)" }}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -176,24 +174,8 @@ function MealSection({
 function DayView({ day, onRecipeClick }: { day: DayMeal; onRecipeClick: (r: Recipe) => void }) {
   return (
     <div>
-      <MealSection
-        icon={MEAL_ICONS.lunch}
-        label={MEAL_LABELS.lunch}
-        mains={day.lunch.mains}
-        side={day.lunch.side}
-        dessert={day.lunch.dessert}
-        onRecipeClick={onRecipeClick}
-        sectionIndex={0}
-      />
-      <MealSection
-        icon={MEAL_ICONS.dinner}
-        label={MEAL_LABELS.dinner}
-        mains={day.dinner.mains}
-        side={day.dinner.side}
-        dessert={day.dinner.dessert}
-        onRecipeClick={onRecipeClick}
-        sectionIndex={1}
-      />
+      <MealSection icon={MEAL_ICONS.lunch}  label={MEAL_LABELS.lunch}  section={day.lunch}  onRecipeClick={onRecipeClick} sectionIndex={0} />
+      <MealSection icon={MEAL_ICONS.dinner} label={MEAL_LABELS.dinner} section={day.dinner} onRecipeClick={onRecipeClick} sectionIndex={1} />
     </div>
   );
 }

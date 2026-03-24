@@ -36,12 +36,9 @@ function normalizeIngredient(raw: string): string {
 export function buildShoppingList(plan: MealPlan): ShoppingItem[] {
   const allRecipes: Recipe[] = []
   for (const day of plan.days) {
-    allRecipes.push(...day.lunch.mains)
-    if (day.lunch.side) allRecipes.push(day.lunch.side)
-    if (day.lunch.dessert) allRecipes.push(day.lunch.dessert)
-    allRecipes.push(...day.dinner.mains)
-    if (day.dinner.side) allRecipes.push(day.dinner.side)
-    if (day.dinner.dessert) allRecipes.push(day.dinner.dessert)
+    const slots = [day.lunch.main, day.lunch.garnish, day.lunch.salad, day.lunch.dessert,
+                   day.dinner.main, day.dinner.garnish, day.dinner.salad, day.dinner.dessert]
+    slots.forEach(r => r && allRecipes.push(r))
   }
 
   const seen = new Set<string>()

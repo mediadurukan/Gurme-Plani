@@ -14,10 +14,17 @@ export interface Recipe {
   tags: string[]
 }
 
+export interface MealSection {
+  main: Recipe | null
+  garnish: Recipe | null   // pilav / bulgur / makarna
+  salad: Recipe | null     // salata / yoğurt / cacık
+  dessert: Recipe | null
+}
+
 export interface DayMeal {
   dayName: string
-  lunch: { mains: Recipe[]; side: Recipe | null; dessert: Recipe | null }
-  dinner: { mains: Recipe[]; side: Recipe | null; dessert: Recipe | null }
+  lunch: MealSection
+  dinner: MealSection
 }
 
 export interface MealPlan {
