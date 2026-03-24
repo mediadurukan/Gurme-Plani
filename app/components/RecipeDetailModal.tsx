@@ -78,7 +78,7 @@ export default function RecipeDetailModal({ recipe, onClose, onPhotoUploaded }: 
               transition={{ type: "spring", stiffness: 320, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
               className="w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col"
-              style={{ maxHeight: "90vh", border: "1px solid rgba(249,115,22,0.15)", boxShadow: "0 20px 60px rgba(0,0,0,0.1)" }}
+              style={{ maxHeight: "90vh", height: "90vh", border: "1px solid rgba(249,115,22,0.15)", boxShadow: "0 20px 60px rgba(0,0,0,0.1)", touchAction: "pan-y" }}
             >
               {/* Fotoğraf alanı */}
               <div className="relative w-full h-48 bg-orange-50 flex items-center justify-center overflow-hidden flex-shrink-0">
@@ -163,7 +163,10 @@ export default function RecipeDetailModal({ recipe, onClose, onPhotoUploaded }: 
               </div>
 
               {/* Content */}
-              <div className="overflow-y-auto flex-1 p-6 space-y-6">
+              <div
+                className="overflow-y-auto flex-1 p-6 space-y-6"
+                style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
+              >
                 {recipe.ingredients?.length > 0 && (
                   <div>
                     <h3 className="text-gray-800 font-semibold mb-3 flex items-center gap-2"><span>📋</span> Malzemeler</h3>
