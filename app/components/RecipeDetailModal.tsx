@@ -163,15 +163,15 @@ export default function RecipeDetailModal({ recipe, onClose, onPhotoUploaded }: 
               </div>
 
               {/* Content */}
-              <div className="p-6 space-y-6">
+              <div className="p-6 space-y-8">
                 {recipe.ingredients?.length > 0 && (
                   <div>
-                    <h3 className="text-gray-800 font-semibold mb-3 flex items-center gap-2"><span>📋</span> Malzemeler</h3>
-                    <ul className="space-y-1.5">
+                    <h3 className="text-gray-800 font-bold text-lg mb-4 flex items-center gap-2"><span>📋</span> Malzemeler</h3>
+                    <ul className="space-y-3">
                       {recipe.ingredients.map((ing, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0" />
-                          {ing}
+                        <li key={i} className="flex items-start gap-3 text-base text-gray-700">
+                          <span className="mt-2 w-2 h-2 rounded-full bg-orange-400 flex-shrink-0" />
+                          <span className="leading-relaxed">{ing}</span>
                         </li>
                       ))}
                     </ul>
@@ -179,12 +179,12 @@ export default function RecipeDetailModal({ recipe, onClose, onPhotoUploaded }: 
                 )}
                 {recipe.instructions?.length > 0 && (
                   <div>
-                    <h3 className="text-gray-800 font-semibold mb-3 flex items-center gap-2"><span>👨‍🍳</span> Yapılışı</h3>
-                    <ol className="space-y-3">
+                    <h3 className="text-gray-800 font-bold text-lg mb-4 flex items-center gap-2"><span>👨‍🍳</span> Yapılışı</h3>
+                    <ol className="space-y-4">
                       {recipe.instructions.map((step, i) => (
-                        <li key={i} className="flex gap-3 text-sm text-gray-600">
-                          <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: "#f97316" }}>{i + 1}</span>
-                          <span className="leading-relaxed pt-0.5">{step}</span>
+                        <li key={i} className="flex gap-4">
+                          <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: "#f97316" }}>{i + 1}</span>
+                          <span className="text-base text-gray-700 leading-relaxed pt-1">{step}</span>
                         </li>
                       ))}
                     </ol>
