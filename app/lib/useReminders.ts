@@ -68,6 +68,7 @@ export function useReminders() {
     if (typeof window === "undefined") return;
 
     const check = () => {
+      if (!("Notification" in window)) return;
       if (Notification.permission !== "granted") return;
       const now = new Date();
       const hhmm = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
